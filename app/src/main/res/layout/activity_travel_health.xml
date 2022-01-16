@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".wsmethods.TravelHealth">
+
+    <Spinner
+        android:id="@+id/travel_type_policy"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/travel_type_cover"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travel_type_policy" />
+
+    <EditText
+        android:id="@+id/numDays"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="Number of days"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travel_type_cover" />
+
+    <EditText
+        android:id="@+id/country"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Country of Travel"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numDays" />
+
+    <EditText
+        android:id="@+id/numPeople"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Number of people"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/country" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Are you below 18?"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintHorizontal_bias=".9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numPeople" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Are you above 65?"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintHorizontal_bias=".9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/numPeople" />
+
+    <Button
+        android:id="@+id/calcTravel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:background="@drawable/button_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numPeople" />
+</androidx.constraintlayout.widget.ConstraintLayout>

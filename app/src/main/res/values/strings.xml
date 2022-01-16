@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">InsuranceMobileApp</string>
+    <string-array name="travelTypePolicy">
+        <item>Individual</item>
+        <item>Family</item>
+        <item>Student</item>
+        <item>Group</item>
+        <item>Business</item>
+    </string-array>
+    <string-array name="travelTypeCover">
+        <item>VISA</item>
+        <item>CLASSIC</item>
+        <item>VIP</item>
+    </string-array>
+</resources>

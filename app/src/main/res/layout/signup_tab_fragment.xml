@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/email_sign"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".8"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constraintHorizontal_bias=".5"
+        android:hint="Enter email"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/username_sign"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Enter username"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_sign"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/pass1_sign"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Enter password"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_sign"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <EditText
+        android:id="@+id/pass2_sign"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Confirm password"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass1_sign"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".8" />
+
+    <Button
+        android:id="@+id/signup_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_bg"
+        android:text="Sign up"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass2_sign"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constraintWidth_percent=".8" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
