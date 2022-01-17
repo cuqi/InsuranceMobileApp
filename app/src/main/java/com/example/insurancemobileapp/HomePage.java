@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.insurancemobileapp.account.PasswordManager;
+import com.example.insurancemobileapp.wsmethods.Household;
 import com.example.insurancemobileapp.wsmethods.TravelHealth;
 
 import java.security.NoSuchAlgorithmException;
@@ -112,7 +113,10 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void toHousehold(View view) {
+        Intent intent = new Intent(this, Household.class);
+        startActivity(intent);
+    }
 
 
 }

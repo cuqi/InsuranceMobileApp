@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.insurancemobileapp.Globals;
 import com.example.insurancemobileapp.R;
+import com.example.insurancemobileapp.modelclasses.HouseholdInfo;
 import com.example.insurancemobileapp.modelclasses.TravelInfo;
 
 import org.ksoap2.SoapEnvelope;
@@ -26,22 +27,22 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
-public class TravelHealth extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class Household extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     // HTML ELEMENTS
-    Spinner typePolicy;
+    Spinner typeObject;
     Spinner typeCover;
-    EditText numDays;
-    EditText country;
-    EditText numPeople;
+    EditText areaOfObject;
+    EditText dateOfObject;
+    Spinner contractLength;
     Button calculate;
 
     // DATA ELEMENTS
-    String input_tp;
+    String input_to;
     String input_tc;
-    int input_nd;
-    int input_np;
-    String input_country;
+    int input_ao;
+    String input_do;
+    int input_cl;
 
     String sessionID;
     String res;
@@ -52,42 +53,47 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
 
     Context context;
     TravelInfo travelInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_travel_health);
+        setContentView(R.layout.activity_household);
 
-        typePolicy = (Spinner) findViewById(R.id.travel_type_policy);
-        typeCover = (Spinner) findViewById(R.id.travel_type_cover);
-        numDays = (EditText) findViewById(R.id.numDays);
-        country = (EditText) findViewById(R.id.country);
-        numPeople = (EditText) findViewById(R.id.numPeople);
+        typeObject = (Spinner) findViewById(R.id.household_type_object);
+        typeCover = (Spinner) findViewById(R.id.household_type_cover);
+        areaOfObject = (EditText) findViewById(R.id.areaOfObject);
+        dateOfObject = (EditText) findViewById(R.id.dateOfObject);
+        contractLength = (Spinner) findViewById(R.id.contractLength);
 
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TravelHealth.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.travelTypePolicy));
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(Household.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.householdTypeObject));
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typePolicy.setAdapter(adapter1);
+        typeObject.setAdapter(adapter1);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(TravelHealth.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.travelTypeCover));
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Household.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.householdTypeCover));
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeCover.setAdapter(adapter2);
 
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(Household.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.householdContractLength));
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        contractLength.setAdapter(adapter3);
 
-        typePolicy.setOnItemSelectedListener(this);
+        typeObject.setOnItemSelectedListener(this);
         typeCover.setOnItemSelectedListener(this);
+        contractLength.setOnItemSelectedListener(this);
 
-        calculate = (Button) findViewById(R.id.calcTravel);
+        calculate = (Button) findViewById(R.id.calcHousehold);
         SharedPreferences prefs = this.getSharedPreferences("sharedPrefs", MODE_PRIVATE);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // ENUMS SE POPOLNETI OD SPINNER
-                input_nd = Integer.parseInt(numDays.getText().toString());
-                input_np = Integer.parseInt(numPeople.getText().toString());
-                input_country = country.getText().toString();
+                input_ao = Integer.parseInt(areaOfObject.getText().toString());
+                input_do = dateOfObject.getText().toString();
+
                 sessionID = prefs.getString("sessionid", "12345678");
-                GetTravelQuotation getTravelQuotation = new GetTravelQuotation();
-                getTravelQuotation.execute();
+                GetHouseholdQuotation getHouseholdQuotation = new GetHouseholdQuotation();
+                getHouseholdQuotation.execute();
             }
         });
     }
@@ -96,12 +102,14 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         switch (parent.getId()) {
-            case R.id.travel_type_policy:
-                input_tp = parent.getItemAtPosition(position).toString().toUpperCase();
+            case R.id.household_type_object:
+                input_to = parent.getItemAtPosition(position).toString().toUpperCase();
                 break;
-            case R.id.travel_type_cover:
+            case R.id.household_type_cover:
                 input_tc = parent.getItemAtPosition(position).toString();
                 break;
+            case R.id.contractLength:
+                input_cl = Integer.valueOf(parent.getItemAtPosition(position).toString());
             default:
                 break;
         }
@@ -109,11 +117,9 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
-
-    public class GetTravelQuotation extends AsyncTask<String, Void, String> {
+    public class GetHouseholdQuotation extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -123,18 +129,19 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
         // SESSION ID : $2a$10$t/OiwGwK7gzQ5acbGoJmRe
         @Override
         protected String doInBackground(String... params) {
-            SoapObject request = new SoapObject(Globals.NAMESPACE, Globals.GET_TRAVEL);
-            travelInfo = new TravelInfo();
-            travelInfo.setProperty(0, input_tp);
-            travelInfo.setProperty(1, input_tc);
-            travelInfo.setProperty(2, input_nd);
-            travelInfo.setProperty(3, input_country);
-            travelInfo.setProperty(4, input_np);
+            SoapObject request = new SoapObject(Globals.NAMESPACE, Globals.GET_HOUSEHOLD);
+
+            HouseholdInfo householdInfo = new HouseholdInfo();
+            householdInfo.setProperty(0, input_to);
+            householdInfo.setProperty(1, input_tc);
+            householdInfo.setProperty(2, input_ao);
+            householdInfo.setProperty(3, input_do);
+            householdInfo.setProperty(4, input_cl);
 
             PropertyInfo pi = new PropertyInfo();
-            pi.setName("travelInfo");
-            pi.setValue(travelInfo);
-            pi.setType(travelInfo.getClass());
+            pi.setName("HouseholdInfo");
+            pi.setValue(householdInfo);
+            pi.setType(householdInfo.getClass());
 
             request.addProperty(pi);
             request.addProperty("sessionID", sessionID);
@@ -142,20 +149,20 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.setOutputSoapObject(request);
-            envelope.addMapping(Globals.NAMESPACE, "travelInfo", travelInfo.getClass());
+            envelope.addMapping(Globals.NAMESPACE, "HouseholdInfo", householdInfo.getClass());
 
             try {
                 HttpTransportSE androidHttpTransport = new HttpTransportSE(Globals.URL);
                 androidHttpTransport.debug = true;
-                androidHttpTransport.call(Globals.NAMESPACE + Globals.GET_TRAVEL, envelope);
+                androidHttpTransport.call(Globals.NAMESPACE + Globals.GET_HOUSEHOLD, envelope);
 
                 Log.i("request dump:", androidHttpTransport.requestDump);
                 Log.i("response dump:", androidHttpTransport.responseDump);
 
                 SoapObject result = (SoapObject) envelope.bodyIn;
                 if(result != null) {
-                    SoapObject getResponse = (SoapObject) result.getProperty(0);
 
+                    SoapObject getResponse = (SoapObject) result.getProperty(0);
                     code = getResponse.getPrimitivePropertyAsString("code");
                     premium = getResponse.getPrimitivePropertyAsString("premium");
                     message = getResponse.getPrimitivePropertyAsString("message");
@@ -176,12 +183,12 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
             Log.i("ONPOSTEX", String.valueOf(result));
             context = getApplicationContext();
             if (code.equals("100")) {
-                Intent intent = new Intent(context, BookTravelHealth.class);
-                intent.putExtra("input_tp", input_tp);
+                Intent intent = new Intent(context, BookHousehold.class);
+                intent.putExtra("input_to", input_to);
                 intent.putExtra("input_tc", input_tc);
-                intent.putExtra("input_nd", input_nd);
-                intent.putExtra("input_country", input_country);
-                intent.putExtra("input_np", input_np);
+                intent.putExtra("input_ao", input_ao);
+                intent.putExtra("input_do", input_do);
+                intent.putExtra("input_cl", input_cl);
                 startActivity(intent);
             } else  {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();

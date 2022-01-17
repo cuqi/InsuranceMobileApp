@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:usesCleartextTraffic="true"
-        >
-        <activity android:name=".TestActivity"></activity>
+        android:usesCleartextTraffic="true">
+        <activity android:name=".wsmethods.BookHousehold"></activity>
+        <activity android:name=".wsmethods.BookTravelHealth" />
+        <activity android:name=".wsmethods.Household" />
+        <activity android:name=".TestActivity" />
         <activity android:name=".wsmethods.TravelHealth" />
         <activity android:name=".HomePage" />
         <activity android:name=".account.LoginActivity" />
