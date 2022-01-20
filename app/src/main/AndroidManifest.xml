@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".wsmethods.BookHousehold"></activity>
+
+        <activity android:name=".wsmethods.BookHousehold" />
         <activity android:name=".wsmethods.BookTravelHealth" />
         <activity android:name=".wsmethods.Household" />
         <activity android:name=".TestActivity" />
