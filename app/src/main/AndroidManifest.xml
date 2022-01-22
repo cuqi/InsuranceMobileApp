@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".wsmethods.Casco"></activity>
+        <activity android:name=".wsmethods.Ao" />
+        <activity android:name=".Payment" />
         <activity android:name=".wsmethods.BookHousehold" />
         <activity android:name=".wsmethods.BookTravelHealth" />
         <activity android:name=".wsmethods.Household" />

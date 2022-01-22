@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.insurancemobileapp.Globals;
 import com.example.insurancemobileapp.R;
 import com.example.insurancemobileapp.modelclasses.HouseholdInfo;
-import com.example.insurancemobileapp.modelclasses.TravelInfo;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.PropertyInfo;
@@ -52,7 +51,7 @@ public class Household extends AppCompatActivity implements AdapterView.OnItemSe
     String message;
 
     Context context;
-    TravelInfo travelInfo;
+    HouseholdInfo householdInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,12 +125,11 @@ public class Household extends AppCompatActivity implements AdapterView.OnItemSe
             super.onPreExecute();
         }
 
-        // SESSION ID : $2a$10$t/OiwGwK7gzQ5acbGoJmRe
         @Override
         protected String doInBackground(String... params) {
             SoapObject request = new SoapObject(Globals.NAMESPACE, Globals.GET_HOUSEHOLD);
 
-            HouseholdInfo householdInfo = new HouseholdInfo();
+            householdInfo = new HouseholdInfo();
             householdInfo.setProperty(0, input_to);
             householdInfo.setProperty(1, input_tc);
             householdInfo.setProperty(2, input_ao);
@@ -183,12 +181,11 @@ public class Household extends AppCompatActivity implements AdapterView.OnItemSe
             Log.i("ONPOSTEX", String.valueOf(result));
             context = getApplicationContext();
             if (code.equals("100")) {
-                Intent intent = new Intent(context, BookHousehold.class);
-                intent.putExtra("input_to", input_to);
-                intent.putExtra("input_tc", input_tc);
-                intent.putExtra("input_ao", input_ao);
-                intent.putExtra("input_do", input_do);
-                intent.putExtra("input_cl", input_cl);
+                Intent intent = new Intent(context, BookTravelHealth.class);
+                intent.putExtra("householdInfo", householdInfo);
+                intent.putExtra("sessionid", sessionID);
+                intent.putExtra("premiumHousehold", premium);
+                intent.putExtra("typePolicy", "HHL");
                 startActivity(intent);
             } else  {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();

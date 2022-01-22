@@ -4,87 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wsmethods.Household">
+    tools:context=".wsmethods.Casco">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ss_logo_ins"
+        app:layout_constraintBottom_toTopOf="@+id/travel_type_policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <Spinner
-        android:id="@+id/household_type_object"
+        android:id="@+id/type_casco"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/household_type_cover"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/household_type_object" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintWidth_percent=".3" />
 
     <EditText
-        android:id="@+id/areaOfObject"
+        android:id="@+id/vehicle_price"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberSigned"
-        android:hint="Area Of Object"
+        android:hint="Цена на возилото (во мкд)"
         android:background="@drawable/edit_text_bg"
         android:paddingLeft="20dp"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
         app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintVertical_bias=".1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/household_type_cover" />
-
-    <EditText
-        android:id="@+id/dateOfObject"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Date Of Object"
-        android:background="@drawable/edit_text_bg"
-        android:paddingLeft="20dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/areaOfObject" />
+        app:layout_constraintTop_toBottomOf="@+id/type_casco" />
 
     <Spinner
-        android:id="@+id/contractLength"
+        android:id="@+id/type_value"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintVertical_bias=".1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateOfObject" />
+        app:layout_constraintTop_toBottomOf="@+id/vehicle_price" />
 
+    <Spinner
+        android:id="@+id/franchise"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_value" />
 
-    <Button
-        android:id="@+id/calcHousehold"
+    <CheckBox
+        android:id="@+id/isWindows"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="Додади осигурување од кршење на стакла?"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/franchise" />
+
+    <Button
+        android:id="@+id/calcCasco"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Пресметај премија"
         android:background="@drawable/button_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contractLength" />
+        app:layout_constraintTop_toBottomOf="@+id/isWindows" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,9 +3,10 @@ package com.example.insurancemobileapp.modelclasses;
 import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 
+import java.io.Serializable;
 import java.util.Hashtable;
 
-public class HouseholdInfo implements KvmSerializable {
+public class HouseholdInfo implements KvmSerializable, Serializable {
     private static final String TYPE_OBJECT = "typeObject";
     private static final String AREA_OF_OBJECT = "areaOfObject";
     private static final String DATE_OF_OBJECT = "dateOfObject";
@@ -26,6 +27,46 @@ public class HouseholdInfo implements KvmSerializable {
         this.typeHouseholdCover = typeHouseholdCover;
         this.areaOfObject = areaOfObject;
         this.dateOfObject = dateOfObject;
+        this.contractLenght = contractLenght;
+    }
+
+    public String getTypeObject() {
+        return typeObject;
+    }
+
+    public void setTypeObject(String typeObject) {
+        this.typeObject = typeObject;
+    }
+
+    public String getTypeHouseholdCover() {
+        return typeHouseholdCover;
+    }
+
+    public void setTypeHouseholdCover(String typeHouseholdCover) {
+        this.typeHouseholdCover = typeHouseholdCover;
+    }
+
+    public int getAreaOfObject() {
+        return areaOfObject;
+    }
+
+    public void setAreaOfObject(int areaOfObject) {
+        this.areaOfObject = areaOfObject;
+    }
+
+    public String getDateOfObject() {
+        return dateOfObject;
+    }
+
+    public void setDateOfObject(String dateOfObject) {
+        this.dateOfObject = dateOfObject;
+    }
+
+    public int getContractLenght() {
+        return contractLenght;
+    }
+
+    public void setContractLenght(int contractLenght) {
         this.contractLenght = contractLenght;
     }
 

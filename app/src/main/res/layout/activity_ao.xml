@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".wsmethods.TravelHealth">
+    tools:context=".wsmethods.Ao">
 
     <ImageView
         android:id="@+id/imageView4"
@@ -18,100 +18,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0" />
 
-    <Spinner
-        android:id="@+id/travel_type_policy"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/travel_type_cover"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/travel_type_policy"
-        app:layout_constraintVertical_bias="0.051"
-        app:layout_constraintWidth_percent=".3" />
-
-    <Button
-        android:id="@+id/openDialog"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/ic_stat_name"
-        android:backgroundTint="@color/cardview_dark_background"
-        app:layout_constraintBottom_toBottomOf="@+id/numDays"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toEndOf="@+id/travel_type_cover"
-        app:layout_constraintTop_toBottomOf="@+id/travel_type_policy"
-        app:layout_constraintVertical_bias="0.255">
-
-
-    </Button>
-
     <EditText
-        android:id="@+id/numDays"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned"
-        android:hint="Number of days"
-        android:background="@drawable/edit_text_bg"
-        android:paddingLeft="20dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/travel_type_cover" />
-
-
-    <Spinner
-        android:id="@+id/list_countries"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".3"
-        app:layout_constraintVertical_bias=".05"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numDays" />
-
-<!--    <EditText-->
-<!--        android:id="@+id/country"-->
-<!--        android:layout_width="300dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:ems="10"-->
-<!--        android:inputType="textPersonName"-->
-<!--        android:hint="Country of Travel"-->
-<!--        android:background="@drawable/edit_text_bg"-->
-<!--        android:paddingLeft="20dp"-->
-<!--        android:paddingTop="8dp"-->
-<!--        android:paddingBottom="8dp"-->
-<!--        app:layout_constraintWidth_percent=".3"-->
-<!--        app:layout_constraintVertical_bias=".05"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/numDays" />-->
-
-    <EditText
-        android:id="@+id/numPeople"
+        android:id="@+id/regNum"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Number of people"
+        android:hint="Регистерски број"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@drawable/edit_text_bg"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <EditText
+        android:id="@+id/chassis"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Број на шасија"
         android:background="@drawable/edit_text_bg"
         android:paddingLeft="20dp"
         android:paddingTop="8dp"
@@ -121,18 +52,65 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_countries" />
+        app:layout_constraintTop_toBottomOf="@+id/regNum" />
+
+    <EditText
+        android:id="@+id/kw"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="Јачина на мотор (KW)"
+        android:background="@drawable/edit_text_bg"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chassis" />
+
+    <EditText
+        android:id="@+id/driver_ssn"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:hint="Матичен број на возачот"
+        android:background="@drawable/edit_text_bg"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kw" />
+
+    <CheckBox
+        android:id="@+id/isNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дали е возилото ново?"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driver_ssn" />
 
     <Button
-        android:id="@+id/calcTravel"
+        android:id="@+id/calcAO"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="Пресметај премија"
         android:background="@drawable/button_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numPeople" />
-
+        app:layout_constraintTop_toBottomOf="@+id/isNew" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,9 +3,10 @@ package com.example.insurancemobileapp.modelclasses;
 import org.ksoap2.serialization.KvmSerializable;
 import org.ksoap2.serialization.PropertyInfo;
 
+import java.io.Serializable;
 import java.util.Hashtable;
 
-public class TravelInfo implements KvmSerializable {
+public class TravelInfo implements KvmSerializable, Serializable {
     private static final String TYPE_TRAVEL_POLICY = "type";
     private static final String TYPE_COVER = "cover";
     private static final String INSURED_DAYS = "days";
@@ -25,6 +26,46 @@ public class TravelInfo implements KvmSerializable {
         this.typeCover = typeCover;
         this.country = country;
         this.insuredDays = insuredDays;
+        this.numPeople = numPeople;
+    }
+
+    public String getTypeTravelPolicy() {
+        return typeTravelPolicy;
+    }
+
+    public void setTypeTravelPolicy(String typeTravelPolicy) {
+        this.typeTravelPolicy = typeTravelPolicy;
+    }
+
+    public String getTypeCover() {
+        return typeCover;
+    }
+
+    public void setTypeCover(String typeCover) {
+        this.typeCover = typeCover;
+    }
+
+    public int getInsuredDays() {
+        return insuredDays;
+    }
+
+    public void setInsuredDays(int insuredDays) {
+        this.insuredDays = insuredDays;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getNumPeople() {
+        return numPeople;
+    }
+
+    public void setNumPeople(int numPeople) {
         this.numPeople = numPeople;
     }
 

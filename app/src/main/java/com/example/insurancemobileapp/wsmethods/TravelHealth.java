@@ -1,5 +1,6 @@
 package com.example.insurancemobileapp.wsmethods;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,9 +34,10 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
     Spinner typePolicy;
     Spinner typeCover;
     EditText numDays;
-    EditText country;
+    Spinner country;
     EditText numPeople;
     Button calculate;
+    Button openDialog;
 
     // DATA ELEMENTS
     String input_tp;
@@ -60,9 +63,16 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
         typePolicy = (Spinner) findViewById(R.id.travel_type_policy);
         typeCover = (Spinner) findViewById(R.id.travel_type_cover);
         numDays = (EditText) findViewById(R.id.numDays);
-        country = (EditText) findViewById(R.id.country);
+        country = (Spinner) findViewById(R.id.list_countries);
         numPeople = (EditText) findViewById(R.id.numPeople);
+        openDialog = (Button) findViewById(R.id.openDialog);
 
+        openDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCustomDialog();
+            }
+        });
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(TravelHealth.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.travelTypePolicy));
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -72,9 +82,14 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         typeCover.setAdapter(adapter2);
 
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(TravelHealth.this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.listOfCountries));
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        country.setAdapter(adapter3);
+
 
         typePolicy.setOnItemSelectedListener(this);
         typeCover.setOnItemSelectedListener(this);
+        country.setOnItemSelectedListener(this);
 
         calculate = (Button) findViewById(R.id.calcTravel);
         SharedPreferences prefs = this.getSharedPreferences("sharedPrefs", MODE_PRIVATE);
@@ -84,12 +99,38 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
                 // ENUMS SE POPOLNETI OD SPINNER
                 input_nd = Integer.parseInt(numDays.getText().toString());
                 input_np = Integer.parseInt(numPeople.getText().toString());
-                input_country = country.getText().toString();
+                if (numDays.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Полето 'Број на осигурани денови' е празно!", Toast.LENGTH_LONG).show();
+                } else if (numPeople.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Полето 'Број на осигурани лица' е празно!", Toast.LENGTH_LONG).show();
+                } else if (input_country.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Полето 'Држава ' е празно!", Toast.LENGTH_LONG).show();
+                }
                 sessionID = prefs.getString("sessionid", "12345678");
                 GetTravelQuotation getTravelQuotation = new GetTravelQuotation();
                 getTravelQuotation.execute();
             }
         });
+    }
+
+    void showCustomDialog() {
+        final Dialog dialog = new Dialog(TravelHealth.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        switch (input_tc) {
+            case "CLASSIC":
+                dialog.setContentView(R.layout.classic_cover_dialog);
+                break;
+            case "VISA":
+                dialog.setContentView(R.layout.visa_cover_dialog);
+                break;
+            case "VIP":
+                dialog.setContentView(R.layout.vip_cover_dialog);
+                break;
+            default:
+                dialog.dismiss();
+        }
+        dialog.show();
     }
 
     @Override
@@ -102,6 +143,8 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
             case R.id.travel_type_cover:
                 input_tc = parent.getItemAtPosition(position).toString();
                 break;
+            case R.id.list_countries:
+                input_country = parent.getItemAtPosition(position).toString();
             default:
                 break;
         }
@@ -177,11 +220,10 @@ public class TravelHealth extends AppCompatActivity implements AdapterView.OnIte
             context = getApplicationContext();
             if (code.equals("100")) {
                 Intent intent = new Intent(context, BookTravelHealth.class);
-                intent.putExtra("input_tp", input_tp);
-                intent.putExtra("input_tc", input_tc);
-                intent.putExtra("input_nd", input_nd);
-                intent.putExtra("input_country", input_country);
-                intent.putExtra("input_np", input_np);
+                intent.putExtra("travelInfo", travelInfo);
+                intent.putExtra("sessionid", sessionID);
+                intent.putExtra("premiumTravel", premium);
+                intent.putExtra("typePolicy", "TRA");
                 startActivity(intent);
             } else  {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();

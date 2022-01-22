@@ -53,4 +53,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.3.0'
+    implementation 'com.stripe:stripe-android:14.2.1'
 }

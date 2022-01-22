@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toWebService(View view) {
-        Intent intent = new Intent(this, TravelHealth.class);
+        Intent intent = new Intent(this, TestActivity.class);
         startActivity(intent);
     }
 }
