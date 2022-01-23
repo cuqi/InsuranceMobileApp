@@ -22,12 +22,28 @@
         android:id="@+id/type_casco"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent=".3"
+        app:layout_constraintVertical_bias=".1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent=".3" />
+        />
+
+    <Button
+        android:id="@+id/openDialog"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_stat_name"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintBottom_toTopOf="@+id/vehicle_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toEndOf="@+id/type_casco"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0.555">
+    </Button>
+
 
     <EditText
         android:id="@+id/vehicle_price"
@@ -76,7 +92,7 @@
         android:id="@+id/isWindows"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Додади осигурување од кршење на стакла?"
+        android:text="Додадете осигурување од кршење на стакла?"
         app:layout_constraintVertical_bias=".1"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintBottom_toBottomOf="parent"

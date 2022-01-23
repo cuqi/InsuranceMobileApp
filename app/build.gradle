@@ -54,4 +54,7 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.3.0'
     implementation 'com.stripe:stripe-android:14.2.1'
+    // sor network call
+    implementation 'com.squareup.okhttp3:okhttp:4.4.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

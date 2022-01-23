@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".wsmethods.Accident">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/ss_logo_ins"
+        app:layout_constraintBottom_toTopOf="@+id/travel_type_policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/accident_start_date"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="1dp"
+        android:background="@drawable/edit_text_bg"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="Почеток на осигурувањето"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/travel_type_cover"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="0" />
+
+
+    <CheckBox
+        android:id="@+id/isStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Дали сте студент?"
+        android:textSize="16dp"
+        app:layout_constraintVertical_bias=".1"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accident_start_date" />
+
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintBottom_toTopOf="@+id/calcTravel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isStudent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <TextView
+
+                    android:id="@+id/textView7"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="Смрт од незгода"
+                    android:layout_marginStart="160dp"
+                     />
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Инвалидитет"
+                    android:layout_marginStart="5dp"
+                     />
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:text="Трошоци за лекување"
+                android:layout_marginStart="5dp"
+                 />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
+
+            <RadioGroup
+                android:layout_width="150dp"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:onClick="onRadioButtonClick"
+                    android:id="@+id/pack1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Пакет 1                     230.000">
+                </RadioButton>
+
+                <RadioButton
+                    android:onClick="onRadioButtonClick"
+                    android:id="@+id/pack2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Пакет 2                     307.000" />
+
+                <RadioButton
+                    android:onClick="onRadioButtonClick"
+                    android:id="@+id/pack3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Пакет 3                     460.000" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="7dp"
+                    android:text="460.000" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="13dp"
+                    android:text="613.000" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="13dp"
+                    android:text="920.000" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="7dp"
+                    android:text="30.000" />
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="13dp"
+                    android:text="40.000" />
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="13dp"
+                    android:text="60.000" />
+
+            </LinearLayout>
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/calcAccident"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Пресметај премија"
+        android:background="@drawable/button_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_layout" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,22 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
-
-import javax.sql.DataSource;
 
 public class Database extends AppCompatActivity {
 
@@ -121,6 +110,39 @@ public class Database extends AppCompatActivity {
                 while (rs.next()) {
                     res = Integer.valueOf(rs.getInt(0));
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return res;
+        }
+
+        @Override
+        protected void onPostExecute(Integer result) {
+            Log.i("ONPOSTEX", String.valueOf(result));
+        }
+    }
+
+    public static class UpdatePolicy extends AsyncTask<String[], Void, Integer> {
+        int res = 0;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+//            Toast.makeText(Database.this, "Please wait...", Toast.LENGTH_SHORT)
+//                    .show();
+
+        }
+
+        @Override
+        protected Integer doInBackground(String[]... params) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(url, user, pass);
+                System.out.println("Database success");
+
+                Statement st = con.createStatement();
+                res = st.executeUpdate("update travelPolicy set status = 'CL' where policy_id = 'TRA1320004';");
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

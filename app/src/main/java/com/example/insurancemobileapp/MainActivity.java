@@ -10,7 +10,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.insurancemobileapp.account.LoginActivity;
-import com.example.insurancemobileapp.wsmethods.TravelHealth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void toWebService(View view) {
-        Intent intent = new Intent(this, TestActivity.class);
+        Intent intent = new Intent(this, ConfirmPolicy.class);
         startActivity(intent);
     }
 }

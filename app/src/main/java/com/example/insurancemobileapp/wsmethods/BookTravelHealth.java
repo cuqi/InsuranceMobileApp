@@ -18,10 +18,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.insurancemobileapp.ConfirmPolicy;
 import com.example.insurancemobileapp.Globals;
-import com.example.insurancemobileapp.Payment;
 import com.example.insurancemobileapp.R;
 import com.example.insurancemobileapp.modelclasses.AOInfo;
+import com.example.insurancemobileapp.modelclasses.AccidentInfo;
+import com.example.insurancemobileapp.modelclasses.CascoInfo;
 import com.example.insurancemobileapp.modelclasses.HouseholdInfo;
 import com.example.insurancemobileapp.modelclasses.InsuredInfo;
 import com.example.insurancemobileapp.modelclasses.TravelInfo;
@@ -86,6 +88,8 @@ public class BookTravelHealth extends AppCompatActivity {
     TravelInfo travelInfo;
     HouseholdInfo householdInfo;
     AOInfo aoInfo;
+    CascoInfo cascoInfo;
+    AccidentInfo accidentInfo;
 
     // return date
     String message;
@@ -116,6 +120,18 @@ public class BookTravelHealth extends AppCompatActivity {
                 aoInfo = (AOInfo) intent.getSerializableExtra("aoInfo");
                 premium = intent.getStringExtra("premiumAO");
                 Log.i("INSIDE SWITHC AO", premium);
+                break;
+            case "CAS":
+                cascoInfo = (CascoInfo) intent.getSerializableExtra("cascoInfo");
+                premium = intent.getStringExtra("premiumCasco");
+                Log.i("INSIDE SWITHC CAS", premium);
+                break;
+            case "ACC":
+                accidentInfo = (AccidentInfo) intent.getSerializableExtra("accidentInfo");
+                premium = intent.getStringExtra("premiumAccident");
+                Log.i("INSIDE SWITHC CAS", premium);
+                break;
+            default:
                 break;
         }
         sessionID = intent.getStringExtra("sessionid");
@@ -208,7 +224,6 @@ public class BookTravelHealth extends AppCompatActivity {
         protected String doInBackground(String... params) {
             SoapObject request = null;
             PropertyInfo pi = new PropertyInfo();
-            // TODO
             switch (typePolicy) {
                 case "TRA":
                     request = new SoapObject(Globals.NAMESPACE, Globals.BOOK_TRAVEL);
@@ -227,6 +242,18 @@ public class BookTravelHealth extends AppCompatActivity {
                     pi.setName("AOInfo");
                     pi.setValue(aoInfo);
                     pi.setType(aoInfo.getClass());
+                    break;
+                case "CAS":
+                    request = new SoapObject(Globals.NAMESPACE, Globals.BOOK_CASCO);
+                    pi.setName("CascoInfo");
+                    pi.setValue(cascoInfo);
+                    pi.setType(cascoInfo.getClass());
+                    break;
+                case "ACC":
+                    request = new SoapObject(Globals.NAMESPACE, Globals.BOOK_ACCIDENT);
+                    pi.setName("AccidentInfo");
+                    pi.setValue(accidentInfo);
+                    pi.setType(accidentInfo.getClass());
                     break;
             }
 
@@ -284,6 +311,16 @@ public class BookTravelHealth extends AppCompatActivity {
                     envelope.addMapping(Globals.NAMESPACE, "AOInfo", travelInfo.getClass());
                     envelope.addMapping(Globals.NAMESPACE, "Insured", insured.getClass());
                     break;
+                case "CAS":
+                    envelope.addMapping(Globals.NAMESPACE, "CascoInfo", cascoInfo.getClass());
+                    envelope.addMapping(Globals.NAMESPACE, "Insured", insured.getClass());
+                    break;
+                case "ACC":
+                    envelope.addMapping(Globals.NAMESPACE, "AccidentInfo", accidentInfo.getClass());
+                    envelope.addMapping(Globals.NAMESPACE, "Insured", insured.getClass());
+                    break;
+                default:
+                    break;
             }
 
             try {
@@ -298,6 +335,14 @@ public class BookTravelHealth extends AppCompatActivity {
                         break;
                     case "AO":
                         androidHttpTransport.call(Globals.NAMESPACE + Globals.BOOK_AO, envelope);
+                        break;
+                    case "CAS":
+                        androidHttpTransport.call(Globals.NAMESPACE + Globals.BOOK_CASCO, envelope);
+                        break;
+                    case "ACC":
+                        androidHttpTransport.call(Globals.NAMESPACE + Globals.BOOK_ACCIDENT, envelope);
+                        break;
+                    default:
                         break;
                 }
 
@@ -329,8 +374,9 @@ public class BookTravelHealth extends AppCompatActivity {
             context = getApplicationContext();
             if (code.equals("100")) {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, Payment.class);
+                Intent intent = new Intent(context, ConfirmPolicy.class);
                 intent.putExtra("policyID", policyID);
+                intent.putExtra("premium", premium);
                 startActivity(intent);
             } else  {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();

@@ -53,8 +53,6 @@
         app:layout_constraintStart_toEndOf="@+id/travel_type_cover"
         app:layout_constraintTop_toBottomOf="@+id/travel_type_policy"
         app:layout_constraintVertical_bias="0.255">
-
-
     </Button>
 
     <EditText

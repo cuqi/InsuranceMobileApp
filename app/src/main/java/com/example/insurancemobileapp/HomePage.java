@@ -14,7 +14,9 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.insurancemobileapp.account.PasswordManager;
+import com.example.insurancemobileapp.wsmethods.Accident;
 import com.example.insurancemobileapp.wsmethods.Ao;
+import com.example.insurancemobileapp.wsmethods.Casco;
 import com.example.insurancemobileapp.wsmethods.Household;
 import com.example.insurancemobileapp.wsmethods.TravelHealth;
 
@@ -121,6 +123,16 @@ public class HomePage extends AppCompatActivity {
 
     public void toAO(View view) {
         Intent intent = new Intent(this, Ao.class);
+        startActivity(intent);
+    }
+
+    public void toCasco(View view) {
+        Intent intent = new Intent(this, Casco.class);
+        startActivity(intent);
+    }
+
+    public void toAccident(View view) {
+        Intent intent = new Intent(this, Accident.class);
         startActivity(intent);
     }
 
