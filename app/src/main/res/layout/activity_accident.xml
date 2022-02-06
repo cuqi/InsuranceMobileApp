@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="Дали сте студент?"
         android:textSize="16dp"
+        android:backgroundTint="@color/blue"
         app:layout_constraintVertical_bias=".1"
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -103,6 +104,7 @@
                 <RadioButton
                     android:onClick="onRadioButtonClick"
                     android:id="@+id/pack1"
+                    android:backgroundTint="@color/blue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Пакет 1                     230.000">
@@ -111,6 +113,7 @@
                 <RadioButton
                     android:onClick="onRadioButtonClick"
                     android:id="@+id/pack2"
+                    android:backgroundTint="@color/blue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Пакет 2                     307.000" />
@@ -118,6 +121,7 @@
                 <RadioButton
                     android:onClick="onRadioButtonClick"
                     android:id="@+id/pack3"
+                    android:backgroundTint="@color/blue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Пакет 3                     460.000" />

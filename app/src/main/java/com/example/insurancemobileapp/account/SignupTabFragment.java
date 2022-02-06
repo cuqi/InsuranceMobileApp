@@ -16,12 +16,16 @@ import androidx.fragment.app.Fragment;
 
 import com.example.insurancemobileapp.BuildConfig;
 import com.example.insurancemobileapp.HomePage;
+import com.example.insurancemobileapp.Mail;
 import com.example.insurancemobileapp.R;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import javax.mail.MessagingException;
 
 public class SignupTabFragment extends Fragment {
 
@@ -35,6 +39,7 @@ public class SignupTabFragment extends Fragment {
     EditText pass2;
     Button signupButton;
 
+    String input_email;
     Context context;
     PasswordManager passwordManager;
     float v = 0;
@@ -118,6 +123,7 @@ public class SignupTabFragment extends Fragment {
                 System.out.println("Database success");
                 Statement st = con.createStatement();
                 String encodedPassword = passwordManager.generateStorngPasswordHash(passed.get(2));
+                input_email = passed.get(0);
                 result = st.executeUpdate("insert into users(email, name, password) values ('" + passed.get(0)+ "', '" + passed.get(1) + "', '" + encodedPassword + "');");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -130,6 +136,13 @@ public class SignupTabFragment extends Fragment {
             Log.i("ONPOSTEX", String.valueOf(result));
 
             if (String.valueOf(result).equals("1")) {
+                try {
+                    Mail.sendMailConfirm(input_email);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent(context, HomePage.class);
                 startActivity(intent);
             } else {

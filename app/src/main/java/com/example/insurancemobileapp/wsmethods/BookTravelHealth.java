@@ -83,6 +83,7 @@ public class BookTravelHealth extends AppCompatActivity {
     InsuredInfo contractor;
     InsuredInfo insured;
     String typePolicy;
+    String typePolicyMapped;
 
     // premium data info
     TravelInfo travelInfo;
@@ -109,26 +110,31 @@ public class BookTravelHealth extends AppCompatActivity {
             case "TRA":
                 travelInfo = (TravelInfo) intent.getSerializableExtra("travelInfo");
                 premium = intent.getStringExtra("premiumTravel");
+                typePolicyMapped = "travelPolicy";
                 Log.i("INSIDE SWITHC TRA", premium);
                break;
             case "HHL":
                 householdInfo = (HouseholdInfo) intent.getSerializableExtra("householdInfo");
                 premium = intent.getStringExtra("premiumHousehold");
+                typePolicyMapped = "householdPolicy";
                 Log.i("INSIDE SWITHC HHL", premium);
                 break;
             case "AO":
                 aoInfo = (AOInfo) intent.getSerializableExtra("aoInfo");
                 premium = intent.getStringExtra("premiumAO");
+                typePolicyMapped = "aoPolicy";
                 Log.i("INSIDE SWITHC AO", premium);
                 break;
             case "CAS":
                 cascoInfo = (CascoInfo) intent.getSerializableExtra("cascoInfo");
                 premium = intent.getStringExtra("premiumCasco");
+                typePolicyMapped = "cascoPolicy";
                 Log.i("INSIDE SWITHC CAS", premium);
                 break;
             case "ACC":
                 accidentInfo = (AccidentInfo) intent.getSerializableExtra("accidentInfo");
                 premium = intent.getStringExtra("premiumAccident");
+                typePolicyMapped = "accidentPolicy";
                 Log.i("INSIDE SWITHC CAS", premium);
                 break;
             default:
@@ -377,6 +383,7 @@ public class BookTravelHealth extends AppCompatActivity {
                 Intent intent = new Intent(context, ConfirmPolicy.class);
                 intent.putExtra("policyID", policyID);
                 intent.putExtra("premium", premium);
+                intent.putExtra("typePolicyMapped", typePolicyMapped);
                 startActivity(intent);
             } else  {
                 Toast.makeText(context, message, Toast.LENGTH_LONG).show();

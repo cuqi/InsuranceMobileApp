@@ -100,6 +100,7 @@ public class Database extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String[]... params) {
             try {
+
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, user, pass);
                 System.out.println("Database success");
@@ -136,13 +137,17 @@ public class Database extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String[]... params) {
             try {
+                String[] data = params[0];
+                Log.i("uniqueREF", data[2]);
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(url, user, pass);
                 System.out.println("Database success");
 
                 Statement st = con.createStatement();
-                res = st.executeUpdate("update travelPolicy set status = 'CL' where policy_id = 'TRA1320004';");
+                res = st.executeUpdate("update "+data[0]+" set status = 'CL', payment_ref='" + data[2] + "' where policy_id = '" + data[1]+ "';");
+                if (res == 1) {
 
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

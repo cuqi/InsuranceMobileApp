@@ -2,6 +2,7 @@ package com.example.insurancemobileapp;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.insurancemobileapp.account.PasswordManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -30,6 +32,8 @@ import com.stripe.android.view.CardInputWidget;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +70,9 @@ public class ConfirmPolicy extends AppCompatActivity {
 
     String policyID;
     Double premium;
+    String typePolicy;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +86,7 @@ public class ConfirmPolicy extends AppCompatActivity {
         Intent intent = getIntent();
         policyID = intent.getStringExtra("policyID");
         premium = Double.parseDouble(intent.getStringExtra("premium"));
+        typePolicy = intent.getStringExtra("typePolicyMapped");
         if (premium == null) {
             premium = Double.parseDouble("1000");
         }
@@ -235,10 +243,23 @@ public class ConfirmPolicy extends AppCompatActivity {
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
 
+                String uniqueRef = "//";
+                try {
+                    uniqueRef = PasswordManager.generateStorngPasswordHash("uniquerefnum").split(":")[1].toUpperCase();
+                    Log.i("uniqueRef 1", uniqueRef);
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (InvalidKeySpecException e) {
+                    e.printStackTrace();
+                }
+                String[] updateData = {typePolicy, policyID, uniqueRef};
                 Database.UpdatePolicy updatePolicy;
                 updatePolicy = new Database.UpdatePolicy();
-                updatePolicy.execute();
+                updatePolicy.execute(updateData);
 
+                context = getApplicationContext();
+                Intent intent = new Intent(context, HomePage.class);
+                startActivity(intent);
             } else if (status == PaymentIntent.Status.RequiresPaymentMethod) {
                 // Payment failed – allow retrying using a different payment method
                 activity.displayAlert(

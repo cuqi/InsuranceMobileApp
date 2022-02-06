@@ -1,38 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        app:srcCompat="@color/white" />
+
+    <ImageView
+        android:id="@+id/outside_imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignTop="@id/imageView"
+        android:layout_alignBottom="@id/imageView"
+        android:layout_alignLeft="@id/imageView"
+        android:layout_alignRight="@id/imageView"
+        android:layout_marginBottom="300dp"
+        app:srcCompat="@drawable/ss_logo_ins"
+        android:scaleType="fitXY" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/button_bg"
-        android:text="Login"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="550dp"
+        android:background="@color/blue"
+        android:clickable="true"
+        android:rotation="180"
         android:onClick="toLoginActivity"
-        />
+        app:srcCompat="?attr/actionModeCloseDrawable" />
 
-    <Button
-        android:id="@+id/toDatabase"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/button_bg"
-        android:text="Button"
-        android:onClick="toDatabase"
-        />
+    <!--    <Button-->
+<!--        android:id="@+id/button"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@drawable/button_bg"-->
+<!--        android:text="Login"-->
+<!--        android:onClick="toLoginActivity"-->
+<!--        />-->
 
-    <Button
-        android:id="@+id/toWS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@drawable/button_bg"
-        android:text="TO WEB SERVICE"
-        android:onClick="toWebService"
-        />
-</LinearLayout>
+<!--    <Button-->
+<!--        android:id="@+id/toDatabase"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@drawable/button_bg"-->
+<!--        android:text="Button"-->
+<!--        android:onClick="toDatabase"-->
+<!--        />-->
+
+<!--    <Button-->
+<!--        android:id="@+id/toWS"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1"-->
+<!--        android:background="@drawable/button_bg"-->
+<!--        android:text="TO WEB SERVICE"-->
+<!--        android:onClick="toWebService"-->
+<!--        />-->
+</RelativeLayout>
